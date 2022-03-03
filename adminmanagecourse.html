@@ -1,0 +1,126 @@
+{% include 'admin_header.html' %}
+
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+    $(function() {
+        $("input[name='coursename']").on('input', function(e) {
+            var w= $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+      // w = /[A-Za-z ]{3,}/.test(this.value);
+      // if(!w) {
+            //         $('#eerrorw').show();
+            //     } else {
+            //         $('#eerrorw').hide();
+            //     }
+
+        });
+</script>
+
+ <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+            
+           
+
+<center>
+	<form method="post">
+{% if data['cur'] %}
+<h1>update COURSE</h1>
+<table class="table" style="width: 600px">
+<tr>
+<th>Course Name</th>
+<td><input type="text"required="" class="form-control" value="{{data['cur'][0]['coursename']}}" name="coursename"></td>
+</tr>
+<tr>
+<th>Starting date</th>
+<td><input type="date"required="" class="form-control" value="{{data['cur'][0]['startingdate']}}" name="startingdate"></td>
+</tr>
+<tr>
+<th>Ending date</th>
+<td><input type="date"required="" class="form-control" value="{{data['cur'][0]['endingdate']}}" name="endingdate"></td>
+</tr>
+<th>Amount</th>
+<td><input type="text"required="" class="form-control" value="{{data['cur'][0]['amount']}}" name="amt"></td>
+</tr>
+<tr>
+<td align="center" colspan="2"><input type="submit" class="btn btn-info" name="update" value="UPDATE">
+</tr>
+</table>
+{% else %}
+
+<h1>COURSE</h1>
+<table class="table" style="width: 600px">
+<tr>
+<th>Course Name</th>
+<td><input type="text"required="" class="form-control" name="coursename"></td>
+</tr>
+<tr>
+<th>Starting date</th>
+<td><input type="date"required="" class="form-control" name="startingdate"></td>
+</tr>
+<tr>
+<th>Ending date</th>
+<td><input type="date" required="" class="form-control"name="ending date"></td>
+</tr>
+<tr>
+<th>Amount</th>
+<td><input type="text"required="" class="form-control" name="amt"></td>
+</tr>
+<tr>
+<td align="center" colspan="2"><input type="submit" class="btn btn-success" name="manage" value="REGISTER">
+</tr>
+</table>
+</form>
+
+{% endif %}
+
+ </div>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section>
+<center>
+
+<h1>view course details</h1>
+<table class="table" style="width: 600px">
+	<tr>
+		<th>sl.no</th>
+		<th style="color: black">course name</th>
+		<th>starting date</th>
+		<th>ending date</th>
+    <th>Amount</th>
+	</tr>
+	{% for row in data['course'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['coursename']}}</td>
+			<td>{{row['startingdate']}}</td>
+			<td>{{row['endingdate']}}</td>
+      <td>{{row['amount']}}</td>
+			<td><a class="btn btn-info" href="?action=delete&id={{row['course_id']}}">Delete</a></td>
+			<td><a class="btn btn-success" href="?action=update&id={{row['course_id']}}">update</a></td>
+		</tr>
+	{% endfor %}
+</table>
+</center>
+{% include 'footer.html' %}

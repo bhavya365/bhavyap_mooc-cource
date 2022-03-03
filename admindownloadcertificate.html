@@ -1,0 +1,57 @@
+{% include 'admin_header.html' %}
+
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title> 
+		<h1 align="center">SOLE MATE</h1>
+	</title> 
+	
+	<!-- Script to print the content of a div -->
+	<script> 
+		function printDiv() { 
+			var divContents = document.getElementById("div_print").innerHTML; 
+			var a = window.open('', '', 'height=500, width=500'); 
+			a.document.write(divContents); 
+			a.document.close(); 
+			a.print(); 
+		} 
+	</script> 
+</head> 
+
+<body style="text-align:center;"> 
+	
+	<div id="div_print" > 
+		
+
+
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<center>
+ <table class="table">	
+
+ 		<h1 style="text-align:center;font-size:160%;color: black"> Certificate</h1>
+<hr>
+<center><!-- <tr style="font-weight: bold;color: black">Bill No.:<b><?php echo $slno++; ?></b> <span style="margin-left:180px;color: black">Date:<?php 	echo $row['date_time'] ?><b></b></span></tr>
+ --><tr style="font-weight: bold;color: black">First Name:<span style="margin-left:0em;color: black"><b>{{data['application'][0]['firstname'] }}</b></span></tr><br>
+
+<tr style="font-weight: bold;color: black">Last Name:<span style="margin-left:0em;color: black"><b>{{data['application'][0]['lastname'] }}</b></span></tr><br>
+<tr style="margin-left:70px;color: black">Course Name:<b>{{data['application'][0]['coursename'] }}</b></tr><br>
+<tr style="margin-left:25px;color: black">Email:<b>{{data['application'][0]['email'] }}</b></tr>
+	</center>
+	</table>
+ 
+</div>
+<input type="button" value="click to print" class="btn btn-success" onclick="printDiv()"></body></html>
+
+</center>
+
+
+<br>	<br>	<br>	<br>
+{% include 'footer.html' %}

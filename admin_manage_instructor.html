@@ -1,0 +1,212 @@
+{% include 'admin_header.html'%}
+
+
+
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+    $(function() {
+        $("input[name='fname']").on('input', function(e) {
+            var w= $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+      // w = /[A-Za-z ]{3,}/.test(this.value);
+      // if(!w) {
+            //         $('#eerrorw').show();
+            //     } else {
+            //         $('#eerrorw').hide();
+            //     }
+
+        });
+    $("input[name='lname']").on('input', function(e) {
+            var w= $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+      
+        });
+    $("input[name='hname']").on('input', function(e) {
+            var w= $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+      
+        });
+        $("input[name='place']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='land']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9 ]/g, ''));
+
+        });
+        $("input[name='phone']").on('input', function(e) {
+          $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+    $("input[name='pin']").on('input', function(e) {
+          $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='email']").on('input', function(e) {
+              var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                if(!re) {
+                    $('#eerror').show();
+                } else {
+                    $('#eerror').hide();
+                }
+
+        });
+      
+        $("input[name='pwd']").on('input', function(e) {
+          $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+            
+        });
+    });
+</script>
+
+ <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(/static/assets/img/slide/slide-1.jpg);">
+          <div class="carousel-container">
+            <div class="container">
+              
+            
+
+<center>
+	
+	<form method="post">
+
+{% if data['cur'] %}
+<h1>UPDATE INSTRUCTOR</h1>
+		<table class="table" style="width: 600px">
+			<tr>
+				<th style="color: black">First Name</th>
+				<td><input type="text" required="" class="form-control"value="{{data['cur'][0]['firstname']}}" name="firstname"></td>
+			</tr>
+			<tr>
+				<th style="color: black">Last Name</th>
+				<td><input type="text"required="" class="form-control" value="{{data['cur'][0]['lastname']}}" name="lastname"></td>
+			</tr>
+			<tr>
+				<th style="color: black">Place</th>
+				<td><input type="text"required="" class="form-control" value="{{data['cur'][0]['place']}}" name="place"></td>
+			</tr>
+			<tr>
+				<th style="color: black">Phone number</th>
+				<td><input type="text"required="" class="form-control"  value="{{data['cur'][0]['phone']}}"name="phone"></td>
+			</tr>
+			<tr>
+				<th style="color: black">Email</th>
+				<td><input type="text"required="" class="form-control" value="{{data['cur'][0]['email']}}" name="email"></td>
+			</tr>
+			<tr>
+				<th style="color: black">Designation</th>
+				<td><input type="text"required="" class="form-control"  value="{{data['cur'][0]['designation']}}"name="designation"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input class="btn btn-info" type="submit" name="update" value="update">
+			</tr>
+		</table>
+
+{% else %}
+<br><br><br>
+		<h1>INSTRUCTOR REGISTRATION</h1>
+		<div style="overflow: scroll;height:500px;">
+		<table style="width: 600px;height: 600px"  class="table">
+			<tr>
+				<th>Course</th>
+				<td>
+					<select name="course" required="" class="form-control">
+						{% for row in data['course'] %}
+						<option value="{{row['course_id']}}">{{row['coursename']}}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>First Name</th>
+				<td><input type="text"required="" class="form-control" name="fname"></td>
+			</tr>
+			<tr>
+				<th>Last Name</th>
+				<td><input type="text"required="" class="form-control"required="" name="lname"></td>
+			</tr>
+			<tr>
+				<th>Place</th>
+				<td><input type="text"required="" class="form-control" name="place"></td>
+			</tr>
+			<tr>
+				<th>Phone number</th>
+				<td><input type="text"required="" class="form-control" name="pho"></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><input type="text"required="" class="form-control" name="email"></td>
+			</tr>
+			<tr>
+				<th>Designation</th>
+				<td><input type="text" required="" class="form-control"name="Designation"></td>
+			</tr>
+			<tr>
+				<th>User Name</th>
+				<td><input type="text"required="" class="form-control" name="uname"></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="password" required="" class="form-control" name="pwd"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input class="btn btn-success" type="submit" name="manage" value="REGISTER">
+			</tr>
+		</table>
+		</div>
+		{% endif %}
+
+
+		</div>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section>
+<center>
+		<h1>view instructors</h1>
+		<table class="table" style="width: 700px">
+			<tr>
+		<th style="color: black">sl.no</th>
+		<th style="color: black">firstname</th>
+		<th style="color: black">lastname</th>
+		<th style="color: black">place</th>
+		<th style="color: black">phone</th>
+		<th style="color: black">email</th>
+		<th style="color: black">Designation</th>
+	</tr>
+		{% for row in data['instructor'] %}
+		<tr>
+			<td>{{loop.index}}</td>
+			<td>{{row['firstname']}}</td>
+			<td>{{row['lastname']}}</td>
+			<td>{{row['place']}}</td>
+			<td>{{row['phone']}}</td>
+			<td>{{row['email']}}</td>
+			<td>{{row['designation']}}</td>
+			<td><a class="btn btn-info" href="?action=delete&id={{row['login_id']}}">Delete</a></td>
+			<td><a class="btn btn-success" href="?action=update&id={{row['login_id']}}">update</a></td>
+		</tr>
+	{% endfor %}
+</table>
+</center>
+</tr>
+	</form>
+</center>
+{% include 'footer.html'%}
